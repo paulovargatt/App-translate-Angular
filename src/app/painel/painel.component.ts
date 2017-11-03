@@ -20,7 +20,7 @@ public rodadaFrase: Frase
 public progresso: number = 0;
 public tentativas: number = 3;
 
-  constructor() { 
+  constructor() {
    this.atualizaRodada()
   }
 
@@ -40,17 +40,19 @@ public tentativas: number = 3;
       this.atualizaRodada()
       //Progresso
       this.progresso = this.progresso + (100 / this.frases.length)
-      
-      alert("A Traducao esta correta")
+
+     if (this.rodada === 4) {
+        alert('Concluiu as traduções com sucesso');
+     }
 
 
     }else{
-      this.tentativas-- 
+      this.tentativas--
       if(this.tentativas === -1){
         alert('Acabou as tentativas :(')
       }
     }
-  
+
   }
 
   public atualizaRodada(): void{
