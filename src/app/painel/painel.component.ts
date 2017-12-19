@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 
 import { Frase } from '../shared/frase.model'
 import { FRASES } from './frases-mock'
@@ -19,6 +19,7 @@ public rodadaFrase: Frase
 
 public progresso: number = 0;
 public tentativas: number = 3;
+@Output() public encerrarJogo: EventEmitter<string> = new EventEmitter()
 
   constructor() {
    this.atualizaRodada()
@@ -42,14 +43,14 @@ public tentativas: number = 3;
       this.progresso = this.progresso + (100 / this.frases.length)
 
      if (this.rodada === 4) {
-        alert('Concluiu as traduções com sucesso');
+       this.encerrarJogo.emit('vitoria')
      }
 
 
     }else{
       this.tentativas--
       if(this.tentativas === -1){
-        alert('Acabou as tentativas :(')
+        this.encerrarJogo.emit('derrota')
       }
     }
 
